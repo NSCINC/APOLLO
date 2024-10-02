@@ -72,7 +72,5 @@ public class NoxusAI {
             System.out.printf("%02x", b);
         }
         System.out.println();
-
-        // More tests can be added here...
     }
 }
