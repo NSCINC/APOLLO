@@ -1,6 +1,3 @@
-Your project overview for **Strawberry** looks great! To create a professional and appealing documentation for your **Apollo** project based on the **Strawberry** framework, we can structure it similarly while emphasizing Apollo's unique features and functionalities. Here’s a draft for the **Apollo** documentation:
-
----
 
 # 🌌 Apollo 🌌 
 
