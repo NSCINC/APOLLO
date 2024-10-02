@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema ERP/CRM DApp</title>
+    <style>
+        /* Estilos gerais */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a; /* Corrigido o valor da cor */
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+            margin-top: 20px;
+        }
+        form {
+            background-color: #2a2a2a;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 600px;
+            margin: 40px auto;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        input[type="text"], input[type="number"], textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background-color: #3a3a3a;
+            color: #ffffff;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Estilos para dispositivos menores */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 24px;
+            }
+            form {
+                padding: 15px;
+                margin: 20px;
+            }
+            button {
+                padding: 10px;
+                font-size: 16px;
+            }
+        }
+
+        /* Estilos para dispositivos muito pequenos */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 22px;
+            }
+            form {
+                max-width: 100%;
+                margin: 15px;
+                padding: 10px;
+            }
+            input, button {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Sistema ERP/CRM DApp</h1>
+
+    <form id="erpForm">
+        <label for="crmToken">Token de Autenticação:</label>
+        <input type="text" id="crmToken" placeholder="Digite o token de autenticação" required>
+
+        <label for="crmInfo">Dados do CRM (separados por vírgula):</label>
+        <textarea id="crmInfo" placeholder="Informe os dados do CRM" required></textarea>
+
+        <label for="investmentAmount">Valor de Investimento:</label>
+        <input type="number" id="investmentAmount" placeholder="Digite o valor de investimento" required>
+
+        <button type="submit">Processar Dados</button>
+    </form>
+
+    <script>
+        document.getElementById('erpForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const crmToken = document.getElementById('crmToken').value;
+            const crmInfo = document.getElementById('crmInfo').value.split(',').map(item => item.trim());
+            const investmentAmount = document.getElementById('investmentAmount').value;
+
+            // Enviar dados via POST para o servidor
+            fetch('/api/processar-dados', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ crmToken, crmInfo, investmentAmount })
+            })
+            .then(response => response.text())
+            .then(result => {
+                alert(result); // Exibir resposta do servidor
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+            });
+        });
+    </script>
+
+</body>
+</html>
